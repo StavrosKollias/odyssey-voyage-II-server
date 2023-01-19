@@ -1,0 +1,16 @@
+{
+  "name": "odysseyvoyageIIserver",
+  "version": "1.0.0",
+  "description": "testing mono repo",
+  "main": "index.js",
+  "repository": "git@github.com:apollographql/odyssey-voyage-II-server.git",
+  "author": "Stavros <stavros.kollias@xdesign.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "launch:monolith": "rover subgraph publish Airlock-t9g9l6@current  --schema ./monolith/schema.graphql --name monolith --routing-url http://localhost:4001",
+    "launch:accounts": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-accounts/schema.graphql --name accounts --routing-url http://localhost:4002",
+    "launch:listings": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-listings/schema.graphql --name listings --routing-url http://localhost:4003",
+    "launch:bookings": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-bookings/schema.graphql --name bookings --routing-url http://localhost:4004"
+  }
+}
