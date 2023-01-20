@@ -2,26 +2,10 @@ extend schema
   @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
 
 type Query {
-  ### Listings
-  # TODO To be migrated to Listings with bookings subgraph migration
-  "Search results for listings that fit the criteria provided"
-  searchListings(criteria: SearchListingsInput): [Listing]!
+  example: String
 }
 
 type Mutation {
-  ### Reviews
-  "Creates reviews for both host and listing for a particular booking - must be authored by guest of past booking"
-  submitHostAndLocationReviews(
-    bookingId: ID!
-    hostReview: ReviewInput!
-    locationReview: ReviewInput!
-  ): SubmitHostAndLocationReviewsResponse!
-  "Creates a review for the guest - must be authored by host of past booking"
-  submitGuestReview(
-    bookingId: ID!
-    guestReview: ReviewInput!
-  ): SubmitGuestReviewResponse!
-
   ### Wallet
   addFundsToWallet(amount: Float!): AddFundsToWalletResponse!
 }
@@ -69,31 +53,18 @@ type Listing @key(fields: "id") {
 type Amenity @key(fields: "id") {
   id: ID!
 }
-# TODO To be migrated to Listings with bookings subgraph migration
-"To search for a listing, you need these fields."
-input SearchListingsInput {
-  checkInDate: String!
-  checkOutDate: String!
-  numOfBeds: Int
-  "The page in the search results, defaults to 1"
-  page: Int
-  "The number of listings you can display in a page, defaults to 5"
-  limit: Int
-  "The results sort order, defaults to cost descending"
-  sortBy: SortByCriteria
-}
-
-"Listings can be sorted by these options"
-enum SortByCriteria {
-  COST_ASC
-  COST_DESC
-}
 
 ### Bookings
 
 "A booking is a reservation for a specific listing"
 type Booking @key(fields: "id") {
   id: ID!
+  "The guest's review of the location"
+  locationReview: Review
+  "The guest's review about the host"
+  hostReview: Review
+  "The host's review about the guest"
+  guestReview: Review
 }
 
 ### Reviews

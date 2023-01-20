@@ -1,7 +1,6 @@
 const { AuthenticationError, ForbiddenError } = require("./utils/errors");
 
 const resolvers = {
-  // TODO: fill in resolvers
   Query: {
     //TODO bookings
     guestBookings: async (_, __, { dataSources, userId, userRole }) => {
@@ -127,7 +126,6 @@ const resolvers = {
   },
   Booking: {
     listing: ({ listingId }) => {
-      console.log("Bookings.listing", listingId);
       return { id: listingId };
     },
     checkInDate: ({ checkInDate }, _, { dataSources }) => {

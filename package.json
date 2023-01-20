@@ -11,6 +11,7 @@
     "launch:monolith": "rover subgraph publish Airlock-t9g9l6@current  --schema ./monolith/schema.graphql --name monolith --routing-url http://localhost:4001",
     "launch:accounts": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-accounts/schema.graphql --name accounts --routing-url http://localhost:4002",
     "launch:listings": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-listings/schema.graphql --name listings --routing-url http://localhost:4003",
-    "launch:bookings": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-bookings/schema.graphql --name bookings --routing-url http://localhost:4004"
+    "launch:bookings": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-bookings/schema.graphql --name bookings --routing-url http://localhost:4004",
+    "launch:delete": "rover subgraph delete my-graph@my-variant --name subgraph-to-delete"
   }
 }

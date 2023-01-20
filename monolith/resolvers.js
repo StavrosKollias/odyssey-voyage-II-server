@@ -2,36 +2,7 @@ const { AuthenticationError, ForbiddenError } = require("./utils/errors");
 
 const resolvers = {
   Query: {
-    // # TODO To be migrated to Listings with bookings subgraph migration
-    searchListings: async (_, { criteria }, { dataSources }) => {
-      console.log(criteria);
-      const { numOfBeds, checkInDate, checkOutDate, page, limit, sortBy } =
-        criteria;
-      const listings = await dataSources.listingsAPI.getListings({
-        numOfBeds,
-        page,
-        limit,
-        sortBy,
-      });
-
-      // check availability for each listing
-      const listingAvailability = await Promise.all(
-        listings.map((listing) =>
-          dataSources.bookingsDb.isListingAvailable({
-            listingId: listing.id,
-            checkInDate,
-            checkOutDate,
-          })
-        )
-      );
-
-      // filter listings data based on availability
-      const availableListings = listings.filter(
-        (listing, index) => listingAvailability[index]
-      );
-
-      return availableListings;
-    },
+    example: () => "Hello World!",
   },
   Mutation: {
     // this is for reviews

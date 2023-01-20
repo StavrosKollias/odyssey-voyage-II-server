@@ -1,0 +1,30 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
+
+type Query {
+  example: String
+}
+
+type Mutation {
+  ### Reviews
+  "Creates reviews for both host and listing for a particular booking - must be authored by guest of past booking"
+  submitHostAndLocationReviews(
+    bookingId: ID!
+    hostReview: ReviewInput!
+    locationReview: ReviewInput!
+  ): SubmitHostAndLocationReviewsResponse!
+  "Creates a review for the guest - must be authored by host of past booking"
+  submitGuestReview(
+    bookingId: ID!
+    guestReview: ReviewInput!
+  ): SubmitGuestReviewResponse!
+}
+
+interface MutationResponse {
+  "Similar to HTTP status code, represents the status of the mutation"
+  code: Int!
+  "Indicates whether the mutation was successful"
+  success: Boolean!
+  "Human-readable message for the UI"
+  message: String!
+}

@@ -26,6 +26,34 @@ const resolvers = {
     listingAmenities: (_, __, { dataSources }) => {
       return dataSources.listingsAPI.getAllAmenities();
     },
+
+    searchListings: async (_, { criteria }, { dataSources }) => {
+      const { numOfBeds, checkInDate, checkOutDate, page, limit, sortBy } =
+        criteria;
+      const listings = await dataSources.listingsAPI.getListings({
+        numOfBeds,
+        page,
+        limit,
+        sortBy,
+      });
+      // check availability for each listing
+      const listingAvailability = await Promise.all(
+        listings.map((listing) =>
+          dataSources.bookingsAPI.isListingAvailable({
+            listingId: listing.id,
+            checkInDate,
+            checkOutDate,
+          })
+        )
+      );
+
+      // filter listings data based on availability
+      const availableListings = listings.filter(
+        (listing, index) => listingAvailability[index]
+      );
+
+      return availableListings;
+    },
   },
   Mutation: {
     // Listings Mutation
@@ -107,6 +135,12 @@ const resolvers = {
       }
     },
   },
+  Booking: {
+    isListingAvailable: (isAvailable) => {
+      console.log("isAvailable", isAvailable);
+      return { availability: isAvailable };
+    },
+  },
   Listing: {
     host: ({ hostId }) => {
       return { id: hostId };
@@ -129,9 +163,8 @@ const resolvers = {
     },
   },
   Amenities: {
-    __resolveReference: async (listing, { dataSources }) => {
-      console.log(listing);
-      const data = await dataSources.listingsAPI.getListing(listing.id);
+    __resolveReference: async ({ id }, { dataSources }) => {
+      const data = await dataSources.listingsAPI.getListing(id);
       return data.amenities;
     },
   },

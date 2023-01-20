@@ -30,12 +30,6 @@ type Booking @key(fields: "id") {
   totalPrice: Float!
   "The status of the booking - check BookingStatus type for all possibilities"
   status: BookingStatus!
-  "The guest's review of the location"
-  locationReview: Review
-  "The guest's review about the host"
-  hostReview: Review
-  "The host's review about the guest"
-  guestReview: Review
 }
 
 type Listing @key(fields: "id") {

@@ -10,6 +10,8 @@ type Query {
   hostListings: [Listing]!
   "Returns all possible amenities for a listing"
   listingAmenities: [Amenity!]!
+  "Search results for listings that fit the criteria provided"
+  searchListings(criteria: SearchListingsInput!): [Listing]!
 }
 
 type Mutation {
@@ -167,4 +169,23 @@ type Booking @key(fields: "id") {
 
 type Review @key(fields: "id") {
   id: ID!
+}
+
+"To search for a listing, you need these fields."
+input SearchListingsInput {
+  checkInDate: String!
+  checkOutDate: String!
+  numOfBeds: Int
+  "The page in the search results, defaults to 1"
+  page: Int
+  "The number of listings you can display in a page, defaults to 5"
+  limit: Int
+  "The results sort order, defaults to cost descending"
+  sortBy: SortByCriteria
+}
+
+"Listings can be sorted by these options"
+enum SortByCriteria {
+  COST_ASC
+  COST_DESC
 }
