@@ -108,4 +108,6 @@ type Host implements User @key(fields: "id") {
 type Listing @key(fields: "id") {
   id: ID!
   reviews: [Review]!
+  "The overall calculated rating for a listing"
+  overallRating: Float
 }

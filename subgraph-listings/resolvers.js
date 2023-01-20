@@ -4,6 +4,7 @@ const resolvers = {
   // TODO: fill in resolvers
   Query: {
     listing: (_, { id }, { dataSources }) => {
+      console.log(id);
       return dataSources.listingsAPI.getListing(id);
     },
 
@@ -11,8 +12,6 @@ const resolvers = {
       if (!userId) throw AuthenticationError();
 
       if (userRole === "Host") {
-        // const data = await dataSources.listingsAPI.getListingsForUser(userId);
-        // // console.log(data);
         return dataSources.listingsAPI.getListingsForUser(userId);
       } else {
         throw ForbiddenError("Only hosts have access to listings.");
@@ -142,6 +141,11 @@ const resolvers = {
     },
   },
   Listing: {
+    // nice example of sending the listing to each booking booking
+    __resolveReference({ id }, { dataSources }) {
+      console.log("resolve ref", id, dataSources);
+      return dataSources.listingsAPI.getListing(id);
+    },
     host: ({ hostId }) => {
       return { id: hostId };
     },
@@ -165,6 +169,7 @@ const resolvers = {
       return dataSources.bookingsAPI.getCurrentlyBookedDateRangesForListing(id);
     },
     bookings: ({ id }, _, { dataSources }) => {
+      console.log(id);
       return dataSources.bookingsAPI.getBookingsForListing(id);
     },
     numberOfUpcomingBookings: async ({ id }, _, { dataSources }) => {

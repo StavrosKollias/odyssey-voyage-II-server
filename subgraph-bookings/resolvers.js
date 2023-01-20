@@ -23,6 +23,7 @@ const resolvers = {
           userId,
           "UPCOMING"
         );
+
         return bookings;
       } else {
         throw ForbiddenError("Only guests have access to trips");
@@ -125,6 +126,7 @@ const resolvers = {
     },
   },
   Booking: {
+    // nice example of pulling the listing in here for each booking
     listing: ({ listingId }) => {
       return { id: listingId };
     },
@@ -151,6 +153,7 @@ const resolvers = {
     },
   },
   Listing: {
+    // this is for populating the data booking for the listing nice example
     bookings: async ({ id }, _, { dataSources }) => {
       return await dataSources.bookingsAPI.getBookingsForListing(id);
     },

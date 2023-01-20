@@ -59,8 +59,6 @@ type Listing @key(fields: "id") {
   numberOfUpcomingBookings: Int!
   "An array of upcoming reserved dates that the listing has been booked for"
   currentlyBookedDates: [ReservedDate]!
-  "The overall calculated rating for a listing"
-  overallRating: Float
   "Calculated total cost of the listing with the given arguments"
   totalCost(checkInDate: String!, checkOutDate: String!): Float!
 }

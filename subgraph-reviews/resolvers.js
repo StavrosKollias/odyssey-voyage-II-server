@@ -74,7 +74,8 @@ const resolvers = {
   Listing: {
     // # TODO To be migrated to Listings with reviews subgraph migration
     overallRating: ({ id }, _, { dataSources }) => {
-      return dataSources.reviewsDb.getOverallRatingForListing(id);
+      console.log(id);
+      return dataSources.reviewsAPI.getOverallRatingForListing(id);
     },
     // # TODO To be migrated to Listings with reviews subgraph migration
     reviews: ({ id }, _, { dataSources }) => {
@@ -84,13 +85,13 @@ const resolvers = {
   Booking: {
     // Guest Reviews resolver
     guestReview: ({ id }, _, { dataSources }) => {
-      return dataSources.reviewsDb.getReviewForBooking("GUEST", id);
+      return dataSources.reviewsAPI.getReviewForBooking("GUEST", id);
     },
     hostReview: ({ id }, _, { dataSources }) => {
-      return dataSources.reviewsDb.getReviewForBooking("HOST", id);
+      return dataSources.reviewsAPI.getReviewForBooking("HOST", id);
     },
     locationReview: ({ id }, _, { dataSources }) => {
-      return dataSources.reviewsDb.getReviewForBooking("LISTING", id);
+      return dataSources.reviewsAPI.getReviewForBooking("LISTING", id);
     },
   },
   Host: {
