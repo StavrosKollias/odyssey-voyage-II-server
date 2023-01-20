@@ -11,6 +11,7 @@ const { AuthenticationError } = require("./utils/errors");
 const typeDefs = gql(readFileSync("./schema.graphql", { encoding: "utf-8" }));
 const resolvers = require("./resolvers");
 const BookingsAPI = require("./datasources/bookings");
+const ListingsAPI = require("./datasources/listings");
 
 async function startApolloServer() {
   const server = new ApolloServer({
@@ -44,6 +45,7 @@ async function startApolloServer() {
           ...userInfo,
           dataSources: {
             bookingsAPI: new BookingsAPI(),
+            listingsAPI: new ListingsAPI(),
           },
         };
       },

@@ -57,7 +57,7 @@ const resolvers = {
         // const listings =
         if (listings.find((listing) => listing.id === listingId)) {
           const bookings =
-            (await dataSources.bookingsDb.getBookingsForListing(
+            (await dataSources.bookingsAPI.getBookingsForListing(
               listingId,
               status
             )) || [];
@@ -101,7 +101,7 @@ const resolvers = {
       }
 
       try {
-        const booking = await dataSources.bookingsDb.createBooking({
+        const booking = await dataSources.bookingbookingsAPI.createBooking({
           listingId,
           checkInDate,
           checkOutDate,
