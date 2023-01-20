@@ -134,16 +134,9 @@ const resolvers = {
       }
     },
   },
-  Booking: {
-    isListingAvailable: (isAvailable) => {
-      console.log("isAvailable", isAvailable);
-      return { availability: isAvailable };
-    },
-  },
   Listing: {
     // nice example of sending the listing to each booking booking
     __resolveReference({ id }, { dataSources }) {
-      console.log("resolve ref", id, dataSources);
       return dataSources.listingsAPI.getListing(id);
     },
     host: ({ hostId }) => {
