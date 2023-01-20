@@ -1,0 +1,47 @@
+extend schema
+  @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
+
+type Query {
+  payment: Int
+}
+
+type Mutation {
+  ### Wallet
+  addFundsToWallet(amount: Float!): AddFundsToWalletResponse!
+}
+
+interface MutationResponse {
+  "Similar to HTTP status code, represents the status of the mutation"
+  code: Int!
+  "Indicates whether the mutation was successful"
+  success: Boolean!
+  "Human-readable message for the UI"
+  message: String!
+}
+
+#### User accounts
+
+"Represents an Airlock user's common properties"
+interface User {
+  id: ID!
+}
+
+"A guest is a type of Airlock user. They book places to stay."
+type Guest implements User @key(fields: "id") {
+  id: ID!
+  "Amount of money in the guest's wallet"
+  funds: Float!
+}
+
+### Payments
+
+type AddFundsToWalletResponse implements MutationResponse {
+  "Similar to HTTP status code, represents the status of the mutation"
+  code: Int!
+  "Indicates whether the mutation was successful"
+  success: Boolean!
+  "Human-readable message for the UI"
+  message: String!
+  "Updated wallet amount"
+  amount: Float
+}

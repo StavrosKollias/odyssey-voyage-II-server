@@ -161,6 +161,18 @@ const resolvers = {
       const data = await dataSources.listingsAPI.getListing(id);
       return data.amenities;
     },
+    currentlyBookedDates: ({ id }, _, { dataSources }) => {
+      return dataSources.bookingsAPI.getCurrentlyBookedDateRangesForListing(id);
+    },
+    bookings: ({ id }, _, { dataSources }) => {
+      return dataSources.bookingsAPI.getBookingsForListing(id);
+    },
+    numberOfUpcomingBookings: async ({ id }, _, { dataSources }) => {
+      const bookings =
+        (await dataSources.bookingsAPI.getBookingsForListing(id, "UPCOMING")) ||
+        [];
+      return bookings.length;
+    },
   },
   Amenities: {
     __resolveReference: async ({ id }, { dataSources }) => {

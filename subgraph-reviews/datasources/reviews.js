@@ -1,8 +1,9 @@
 // TODO: rename file and add datasource code hereconst { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
 const Sequelize = require("sequelize");
 const Review = require("../../services/reviews/sequelize/models/review");
 
-class ReviewsDb {
+class ReviewsAPI {
   constructor() {
     const db = this.initializeSequelizeDb();
     this.db = db;
@@ -128,4 +129,4 @@ class ReviewsDb {
   }
 }
 
-module.exports = ReviewsDb;
+module.exports = ReviewsAPI;
