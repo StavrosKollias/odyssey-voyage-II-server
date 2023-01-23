@@ -4,7 +4,6 @@ const resolvers = {
   // TODO: fill in resolvers
   Query: {
     listing: (_, { id }, { dataSources }) => {
-      console.log(id);
       return dataSources.listingsAPI.getListing(id);
     },
 
@@ -170,12 +169,6 @@ const resolvers = {
         (await dataSources.bookingsAPI.getBookingsForListing(id, "UPCOMING")) ||
         [];
       return bookings.length;
-    },
-  },
-  Amenities: {
-    __resolveReference: async ({ id }, { dataSources }) => {
-      const data = await dataSources.listingsAPI.getListing(id);
-      return data.amenities;
     },
   },
   AmenityCategory: {

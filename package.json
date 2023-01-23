@@ -8,12 +8,15 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "launch:monolith": "rover subgraph publish Airlock-t9g9l6@current  --schema ./monolith/schema.graphql --name monolith --routing-url http://localhost:4001",
     "launch:accounts": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-accounts/schema.graphql --name accounts --routing-url http://localhost:4002",
     "launch:listings": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-listings/schema.graphql --name listings --routing-url http://localhost:4003",
     "launch:bookings": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-bookings/schema.graphql --name bookings --routing-url http://localhost:4004",
     "launch:reviews": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-reviews/schema.graphql --name reviews --routing-url http://localhost:4005",
     "launch:payments": "rover subgraph publish Airlock-t9g9l6@current  --schema ./subgraph-payments/schema.graphql --name payments --routing-url http://localhost:4006",
+    "launch:staging-accounts": "rover subgraph publish Airlock-t9g9l6@staging  --schema ./subgraph-accounts/schema.graphql --name accounts --routing-url https://staging-airlock-accounts.com",
+    "launch:staging-listings": "rover subgraph publish Airlock-t9g9l6@staging  --schema ./subgraph-listings/schema.graphql --name listings --routing-url https://staging-airlock-listings.com",
+    "launch:staging-bookings": "rover subgraph publish Airlock-t9g9l6@staging  --schema ./subgraph-bookings/schema.graphql --name bookings --routing-url https://staging-airlock-bookings.com",
+    "launch:staging-reviews": "rover subgraph publish Airlock-t9g9l6@staging  --schema ./subgraph-reviews/schema.graphql --name reviews --routing-url https://staging-airlock-reviews.com5",
     "launch:delete": "rover subgraph delete my-graph@my-variant --name subgraph-to-delete"
   }
 }
