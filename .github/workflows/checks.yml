@@ -22,7 +22,6 @@ jobs:
       APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
       APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF}}
       APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
-      GRAPH_ID: airlock-managed-fed
       SUBGRAPH: listings
 
     # Steps represent a sequence of tasks that will be executed as part of the job
