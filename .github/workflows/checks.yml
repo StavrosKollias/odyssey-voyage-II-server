@@ -38,4 +38,4 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - name: Run check against staging variant
         run: |
-          rover subgraph check ${GRAPH_ID}@staging --schema ./${SUBGRAPH}.graphql --name $SUBGRAPH
+          rover subgraph check ${GRAPH_ID}@staging --schema ./subgraph-${SUBGRAPH}/schema.graphql --name $SUBGRAPH
