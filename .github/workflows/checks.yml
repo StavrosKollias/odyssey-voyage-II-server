@@ -20,6 +20,7 @@ jobs:
     # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsenv
     env:
       APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+      APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF}}
       APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
       GRAPH_ID: airlock-managed-fed
       SUBGRAPH: listings
@@ -38,4 +39,4 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - name: Run check against staging variant
         run: |
-          rover subgraph check ${GRAPH_ID}@staging --schema ./subgraph-${SUBGRAPH}/schema.graphql --name $SUBGRAPH
+          rover subgraph check ${APOLLO_GRAPH_REF} --schema ./subgraph-${SUBGRAPH}/schema.graphql --name $SUBGRAPH
