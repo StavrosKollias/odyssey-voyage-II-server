@@ -34,6 +34,10 @@ class ListingsAPI extends RESTDataSource {
     );
   }
 
+  getListingCoordinates(id) {
+    return this.get(`listing/${id}/coordinates`);
+  }
+
   createListing(listing) {
     return this.post(`listings`, { body: { listing } });
   }

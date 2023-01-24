@@ -18,6 +18,8 @@
     "launch:staging-bookings": "rover subgraph publish Airlock-t9g9l6@staging  --schema ./subgraph-bookings/schema.graphql --name bookings --routing-url https://staging-airlock-bookings.com",
     "launch:staging-reviews": "rover subgraph publish Airlock-t9g9l6@staging  --schema ./subgraph-reviews/schema.graphql --name reviews --routing-url https://staging-airlock-reviews.com",
     "launch:staging-payments": "rover subgraph publish Airlock-t9g9l6@staging  --schema ./subgraph-payments/schema.graphql --name payments --routing-url https://staging-airlock-payments.com",
-    "launch:delete-subgraph": "rover subgraph delete my-graph@my-variant --name subgraph-to-delete"
+    "launch:delete-subgraph": "rover subgraph delete my-graph@my-variant --name subgraph-to-delete",
+    "launch:listings-check-current": "rover subgraph check Airlock-t9g9l6@current  --schema ./subgraph-listings/schema.graphql --name listings",
+    "launch:listings-check-staging": "rover subgraph check Airlock-t9g9l6@staging  --schema ./subgraph-listings/schema.graphql --name listings"
   }
 }

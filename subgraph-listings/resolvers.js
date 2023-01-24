@@ -135,7 +135,7 @@ const resolvers = {
   },
   Listing: {
     // nice example of sending the listing to each booking booking
-    __resolveReference({ id }, { dataSources }) {
+    __resolveReference: ({ id }, { dataSources }) => {
       return dataSources.listingsAPI.getListing(id);
     },
     host: ({ hostId }) => {
@@ -161,7 +161,6 @@ const resolvers = {
       return dataSources.bookingsAPI.getCurrentlyBookedDateRangesForListing(id);
     },
     bookings: ({ id }, _, { dataSources }) => {
-      console.log(id);
       return dataSources.bookingsAPI.getBookingsForListing(id);
     },
     numberOfUpcomingBookings: async ({ id }, _, { dataSources }) => {
@@ -169,6 +168,9 @@ const resolvers = {
         (await dataSources.bookingsAPI.getBookingsForListing(id, "UPCOMING")) ||
         [];
       return bookings.length;
+    },
+    coordinates: ({ id }, _, { dataSources }) => {
+      return dataSources.listingsAPI.getListingCoordinates(id);
     },
   },
   AmenityCategory: {
