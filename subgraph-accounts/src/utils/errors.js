@@ -17,4 +17,3 @@ export const ForbiddenError = (errMessage) => {
   });
 };
 
-// module.exports = { AuthenticationError, ForbiddenError };

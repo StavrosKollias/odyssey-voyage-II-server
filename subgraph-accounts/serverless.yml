@@ -3,7 +3,7 @@ service: apollo-lambda
 
 provider:
   name: aws
-  stage: staging-listings
+  stage: staging-accounts
   region: eu-west-1
   runtime: nodejs16.x
   httpApi:
