@@ -53,10 +53,10 @@
     "@apollo/utils.keyvaluecache" "^2.0.1"
     "@apollo/utils.logger" "^2.0.0"
 
-"@apollo/server@^4.0.1":
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/@apollo/server/-/server-4.3.0.tgz#d1dce36dbf54df95021aba44fcc81e667f4c3adc"
-  integrity sha512-M30z/hExJtvqGE4UFJTa0W7FoRPPXmEjrrHK16+v63hE+deH1gYiXq0MdXKvMdoQhQQqnv09jo9mDDEpMBJvjg==
+"@apollo/server@^4.3.1":
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/@apollo/server/-/server-4.3.1.tgz#99994f8c1de57da59b9a5a2e25ca3267c24c5804"
+  integrity sha512-FSeZVxysH63BotZwqE6jI0yoUwHRBpgF2auXdRH3T9rXeUd3acposh5cHHyJHJvmQAbboeR/KyMEEuRaVFaM3Q==
   dependencies:
     "@apollo/cache-control-types" "^1.0.2"
     "@apollo/server-gateway-interface" "^1.0.7"
@@ -193,6 +193,13 @@
   resolved "https://registry.yarnpkg.com/@apollo/utils.withrequired/-/utils.withrequired-2.0.0.tgz#f39340f7b621b214d7a063b8da3eab24a9b7b7e8"
   integrity sha512-+djpTu6AEE/A1etryZs9tmXRyDY6XXGe3G29MS/LB09uHq3pcl3n4Q5lvDTL5JWKuJixrulg5djePLDAooG8dQ==
 
+"@as-integrations/aws-lambda@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@as-integrations/aws-lambda/-/aws-lambda-1.2.1.tgz#6901fbdae65c719f0b538dd3150785370a463f7d"
+  integrity sha512-+u89obfAZeAHE195XIzKi54oVnRJxibPvY+YdCjpro4u3P+MBW6k4BrkDHjJIeJNB/YIItKewNu6LAusELKypA==
+  dependencies:
+    "@types/aws-lambda" "^8.10.106"
+
 "@gar/promisify@^1.0.1":
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/@gar/promisify/-/promisify-1.1.3.tgz#555193ab2e3bb3b6adc3d551c9c030d9e860daf6"
@@ -316,6 +323,11 @@
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/@tootallnate/once/-/once-1.1.2.tgz#ccb91445360179a04e7fe6aff78c00ffc1eeaf82"
   integrity sha512-RbzJvlNzmRq5c3O09UipeuXno4tA1FE6ikOjxZK0tuxVv3412l64l5t1W5pj4+rJq9vpkm/kwiR07aZXnsKPxw==
+
+"@types/aws-lambda@^8.10.106":
+  version "8.10.109"
+  resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.109.tgz#2f434cbfafe083529e365fe9c114787827a169a8"
+  integrity sha512-/ME92FneNyXQzrAfcnQQlW1XkCZGPDlpi2ao1MJwecN+6SbeonKeggU8eybv1DfKli90FAVT1MlIZVXfwVuCyg==
 
 "@types/body-parser@*":
   version "1.19.2"
