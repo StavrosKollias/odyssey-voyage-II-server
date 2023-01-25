@@ -10,8 +10,8 @@ workflow_run:
 
 jobs:
 publish_schema:
-  name: Publish schema to staging variant
-  if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  name: Publish Listing schema to staging variant
+  if: ${{github.event.workflow_run.conclusion == 'success' }}
   runs-on: ubuntu-latest
   environment: apollo
   env:
