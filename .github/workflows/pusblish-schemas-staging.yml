@@ -2,7 +2,7 @@
 name: Staging Publish Schemas
 
 # this job runs after the Staging Deploy is completed
-on: push
+on:
 workflow_run:
   workflows: "Run schema checks"
   types: [completed]
