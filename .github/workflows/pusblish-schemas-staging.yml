@@ -1,5 +1,5 @@
 # This job publishes the schema to the registry's staging variant
-name: Staging Publish Schema
+name: Staging Publish Schemas
 
 # this job runs after the Staging Deploy is completed
 workflow_run:
