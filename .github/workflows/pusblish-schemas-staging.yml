@@ -5,7 +5,8 @@ name: Staging Publish Schemas
 on:
   workflow_run:
     workflows: [Run schema checks]
-    types: [completed]
+    types:
+      - completed
 
 jobs:
   publish_schema:
@@ -29,16 +30,16 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - name: Publish Listings subgraph to staging registry
         run: |
-          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-listings.graphql --name listings
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-listings/schema.graphql --name listings
       - name: Publish Accounts subgraph to staging registry
         run: |
-          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-accounts.graphql --name accounts
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-accounts/schema.graphql --name accounts
       - name: Publish Bookings subgraph to staging registry
         run: |
-          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings.graphql --name bookigs
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings/schema.graphql --name bookigs
       - name: Publish Reviews subgraph to staging registry
         run: |
-          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-reviews.graphql --name reviews
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-reviews/schema.graphql --name reviews
       - name: Publish Payments subgraph to staging registry
         run: |
-          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-payments.graphql --name payments
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-payments/schema.graphql --name payments
