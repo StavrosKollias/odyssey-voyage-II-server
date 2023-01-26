@@ -39,4 +39,13 @@ jobs:
           echo "$HOME/.rover/bin" >> $GITHUB_PATH
       - name: Run check against staging variant
         run: |
-          rover subgraph check ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-${SUBGRAPH}/schema.graphql --name ${SUBGRAPH}
+          rover subgraph check ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-listings/schema.graphql --name listings
+             - name: Run check against staging variant
+        run: |
+          rover subgraph check ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-accounts/schema.graphql --name accounts
+        run: |
+          rover subgraph check ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-reviews/schema.graphql --name reviews
+        run: |
+          rover subgraph check ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings/schema.graphql --name bookings
+        run: |
+          rover subgraph check ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-payments/schema.graphql --name payments

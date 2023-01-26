@@ -1,5 +1,5 @@
 # This job deploys the code to the staging AWS Lambda app environment
-service: apollo-lambda-listings
+service: apollo-lambda-bookings
 
 provider:
   name: aws

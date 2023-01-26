@@ -8,10 +8,8 @@ import { buildSubgraphSchema } from "@apollo/subgraph";
 import cors from "cors";
 import { readFileSync } from "fs";
 import axios from "axios";
-import resolvers from "./resolvers.js";
-import { BookingsAPI, ListingsAPI } from "./datasources/datasource.js";
-
-import { AuthenticationError } from "./utils/errors.js";
+import { resolvers } from "./resolvers.js";
+import { PaymentsAPI } from "./datasources/datasource.js";
 
 const typeDefs = gql(readFileSync("./schema.graphql", { encoding: "utf-8" }));
 
@@ -39,10 +37,10 @@ app.use(
       // API Gateway event and Lambda Context
       const { event, context } = serverlessExpress.getCurrentInvoke();
 
-      console.log(event);
+      //   console.log(event);
       const token = event.headers.authorization || "";
       const userId = token.split(" ")[1]; // get the user name after 'Bearer '
-
+      console.log(token);
       let userInfo = {};
       if (userId) {
         const { data } = await axios
@@ -53,6 +51,7 @@ app.use(
 
         userInfo = { userId: data.id, userRole: data.role };
       }
+      console.log("hey");
       // console.log({
       //   expressRequest: req,
       //   expressResponse: res,
@@ -63,8 +62,7 @@ app.use(
       return {
         ...userInfo,
         dataSources: {
-          listingsAPI: new ListingsAPI(),
-          bookingsAPI: new BookingsAPI(),
+          paymentsAPI: new PaymentsAPI(),
         },
       };
     },

@@ -4,7 +4,7 @@ name: Staging Publish Schema
 # this job runs after the Staging Deploy is completed
 on:
 workflow_run:
-  workflows: ["Staging Deploy"]
+  workflows: ["Run schema checks"]
   types:
     - completed
 
@@ -19,7 +19,6 @@ publish_schema:
     APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF}}
     APOLLO_GRAPH_REF_STAGING: ${{secrets.APOLLO_GRAPH_REF_STAGING}}
     APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
-    SUBGRAPH: listings
   steps:
     - uses: actions/checkout@v2
     - name: Install Rover
@@ -31,4 +30,12 @@ publish_schema:
         echo "$HOME/.rover/bin" >> $GITHUB_PATH
     - name: Publish subgraph to staging registry
       run: |
-        rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-${SUBGRAPH}.graphql --name $SUBGRAPH
+        rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-listings.graphql --name listings
+      run: |
+        rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-accounts.graphql --name accounts
+      run: |
+        rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings.graphql --name bookigs
+      run: |
+        rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-reviews.graphql --name reviews
+      run: |
+        rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-payments.graphql --name payments
