@@ -1,5 +1,8 @@
 extend schema
-  @link(url: "https://specs.apollo.dev/federation/v2.0", import: ["@key"])
+  @link(
+    url: "https://specs.apollo.dev/federation/v2.0"
+    import: ["@key", "@shareable"]
+  )
 
 type Query {
   "Returns the details about this listing"
@@ -61,6 +64,8 @@ type Listing @key(fields: "id") {
   currentlyBookedDates: [ReservedDate]!
   "Calculated total cost of the listing with the given arguments"
   totalCost(checkInDate: String!, checkOutDate: String!): Float!
+  "Where this listing is located in the galaxy"
+  coordinates: GalacticCoordinates
 }
 
 "What the location provides. An amenity should be tied to a specific category."
@@ -70,6 +75,11 @@ type Amenity @key(fields: "id") {
   category: AmenityCategory!
   "The name of the amenity. Should be short."
   name: String!
+}
+
+type GalacticCoordinates @shareable {
+  lattitude: Float!
+  Longitude: Float!
 }
 
 "A booking is reserved for a certain date range, marked by the checkInDate and checkOutDate fields"

@@ -1,0 +1,12 @@
+{
+  "version": "2",
+  "httpMethod": "POST",
+  "path": "/",
+  "headers": {
+    "content-type": "application/json",
+    "authorization": "Bearer user-1"
+  },
+  "requestContext": {},
+  "rawQueryString": "",
+  "body": "{\"operationName\": null, \"variables\": {\"userId\": \"user-2\"}, \"query\": \"{ pastGuestBookings(id:$userId) {id} }\"}"
+}

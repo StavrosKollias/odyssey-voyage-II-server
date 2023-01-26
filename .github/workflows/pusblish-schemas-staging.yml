@@ -1,0 +1,44 @@
+# This job publishes the schema to the registry's staging variant
+name: Staging Publish Schemas
+
+# this job runs after the Staging Deploy is completed
+on:
+  workflow_run:
+    workflows: [Run schema checks]
+    types: [completed]
+
+jobs:
+  publish_schema:
+    name: Publish all schemas to staging variant
+    if: ${{github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    environment: apollo
+    env:
+      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
+      APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF}}
+      APOLLO_GRAPH_REF_STAGING: ${{secrets.APOLLO_GRAPH_REF_STAGING}}
+      APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Rover
+        run: |
+          curl -sSL https://rover.apollo.dev/nix/v0.1.0 | sh
+
+          # Add Rover to the $GITHUB_PATH so it can be used in another step
+          # https://docs.github.com/en/actions/reference/workflow-commands-for-github-actions#adding-a-system-path
+          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Publish Listings subgraph to staging registry
+        run: |
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-listings.graphql --name listings
+      - name: Publish Accounts subgraph to staging registry
+        run: |
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-accounts.graphql --name accounts
+      - name: Publish Bookings subgraph to staging registry
+        run: |
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings.graphql --name bookigs
+      - name: Publish Reviews subgraph to staging registry
+        run: |
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-reviews.graphql --name reviews
+      - name: Publish Payments subgraph to staging registry
+        run: |
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-payments.graphql --name payments

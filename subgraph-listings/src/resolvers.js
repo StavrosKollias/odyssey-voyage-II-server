@@ -1,4 +1,4 @@
-const { AuthenticationError, ForbiddenError } = require("./utils/errors");
+import { AuthenticationError, ForbiddenError } from "./utils/errors.js";
 
 const resolvers = {
   // TODO: fill in resolvers
@@ -180,4 +180,5 @@ const resolvers = {
   },
 };
 
-module.exports = resolvers;
+// module.exports = resolvers;
+export default resolvers;

@@ -1,9 +1,10 @@
-const { v4: uuidv4 } = require("uuid");
-const { format } = require("date-fns");
-const Sequelize = require("sequelize");
-const Booking = require("../../services/bookings/sequelize/models/booking");
+import { RESTDataSource } from "@apollo/datasource-rest";
+import { v4 } from "uuid";
+import { format } from "date-fns";
+import Sequelize from "sequelize";
+import Booking from "../../../services/bookings/sequelize/models/booking.js";
 
-class BookingsAPI {
+export class BookingsAPI {
   constructor() {
     const db = this.initializeSequelizeDb();
     this.db = db;
@@ -130,7 +131,7 @@ class BookingsAPI {
       await this.isListingAvailable({ listingId, checkInDate, checkOutDate })
     ) {
       const booking = await this.db.Booking.create({
-        id: uuidv4(),
+        id: v4.uuidv4(),
         listingId,
         checkInDate,
         checkOutDate,
@@ -151,5 +152,49 @@ class BookingsAPI {
     }
   }
 }
+export class ListingsAPI extends RESTDataSource {
+  constructor() {
+    super();
+    this.baseURL = "http://localhost:4010/";
+  }
 
-module.exports = BookingsAPI;
+  getListingsForUser(userId) {
+    return this.get(`user/${userId}/listings`);
+  }
+
+  getListings({ numOfBeds, page, limit, sortBy }) {
+    return this.get(
+      `listings?numOfBeds=${numOfBeds}&page=${page}&limit=${limit}&sortBy=${sortBy}`
+    );
+  }
+
+  getFeaturedListings(limit = 1) {
+    return this.get(`featured-listings?limit=${limit}`);
+  }
+
+  getListing(listingId) {
+    return this.get(`listings/${listingId}`);
+  }
+
+  getAllAmenities() {
+    return this.get(`listing/amenities`);
+  }
+
+  getTotalCost({ id, checkInDate, checkOutDate }) {
+    return this.get(
+      `listings/${id}/totalCost?checkInDate=${checkInDate}&checkOutDate=${checkOutDate}`
+    );
+  }
+
+  getListingCoordinates(id) {
+    return this.get(`listing/${id}/coordinates`);
+  }
+
+  createListing(listing) {
+    return this.post(`listings`, { body: { listing } });
+  }
+
+  updateListing({ listingId, listing }) {
+    return this.patch(`listings/${listingId}`, { body: { listing } });
+  }
+}

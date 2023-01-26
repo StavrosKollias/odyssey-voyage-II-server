@@ -1,0 +1,12 @@
+{
+  "version": "2",
+  "httpMethod": "POST",
+  "path": "/",
+  "headers": {
+    "content-type": "application/json",
+    "authorization": "Bearer user-1"
+  },
+  "requestContext": {},
+  "rawQueryString": "",
+  "body": "{\"operationName\": null, \"variables\": {\"id\":\"'123'\"}, \"query\": \"{ review(id:2){ id } }\"}"
+}
