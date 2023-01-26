@@ -5,8 +5,9 @@ name: Staging Publish Schemas
 on: push
 workflow_run:
   workflows: "Run schema checks"
-  types:
-    - completed
+  types: [completed]
+  branches:
+    - "main"
 
 jobs:
   publish_schema:
