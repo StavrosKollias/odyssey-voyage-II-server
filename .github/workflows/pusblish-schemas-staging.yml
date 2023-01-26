@@ -3,6 +3,8 @@ name: Staging Publish Schemas
 
 # this job runs after the Staging Deploy is completed
 on:
+  pull_request:
+    types: [opened, synchronize, edited]
   workflow_run:
     workflows: ["Run schema checks"]
     types:
