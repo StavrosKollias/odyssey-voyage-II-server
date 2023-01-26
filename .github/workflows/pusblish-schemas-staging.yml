@@ -9,7 +9,7 @@ workflow_run:
 
 jobs:
   publish_schema:
-    name: Publish Listing schema to staging variant
+    name: Publish all schemas to staging variant
     if: ${{github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     environment: apollo
@@ -33,12 +33,12 @@ jobs:
       - name: Publish Accounts subgraph to staging registry
         run: |
           rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-accounts.graphql --name accounts
-    - name: Publish Bookings subgraph to staging registry
+      - name: Publish Bookings subgraph to staging registry
         run: |
           rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings.graphql --name bookigs
-    - name: Publish Reviews subgraph to staging registry
+      - name: Publish Reviews subgraph to staging registry
         run: |
           rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-reviews.graphql --name reviews
-    - name: Publish Payments subgraph to staging registry   
+      - name: Publish Payments subgraph to staging registry
         run: |
           rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-payments.graphql --name payments
