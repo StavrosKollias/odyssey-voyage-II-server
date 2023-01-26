@@ -1,9 +1,9 @@
 # This job deploys the code to the staging AWS Lambda app environment
-service: apollo-lambda
+service: apollo-lambda-accounts
 
 provider:
   name: aws
-  stage: staging-accounts
+  stage: staging
   region: eu-west-1
   runtime: nodejs16.x
   httpApi:

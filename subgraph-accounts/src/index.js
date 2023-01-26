@@ -9,7 +9,7 @@ import cors from "cors";
 import { readFileSync } from "fs";
 import axios from "axios";
 import { resolvers } from "./resolvers.js";
-import { AccountsAPI } from "./datasources/accounts.js";
+import { AccountsAPI } from "./datasources/datasource.js";
 import { AuthenticationError } from "./utils/errors.js";
 
 const typeDefs = gql(readFileSync("./schema.graphql", { encoding: "utf-8" }));
