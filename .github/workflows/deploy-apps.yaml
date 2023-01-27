@@ -1,38 +1,29 @@
-# This job runs a schema check for the staging variant
 name: Run Deployments
 
-# It runs for every PR opened, updated and edited
 on:
-  push
-  # pull_request:
-  #   types:
-  #     - closed
-  #   branches:
-  #     - master
+  push:
+    branches:
+      - main
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  schema_checks:
-    # The type of runner that the job will run on
+  deploy:
+    name: deploy
     runs-on: ubuntu-latest
-
-    # https://docs.github.com/en/actions/reference/environments
-    environment: apollo
-
-    # https://docs.github.com/en/actions/reference/encrypted-secrets
-    # https://docs.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idstepsenv
-    env:
-      APOLLO_KEY: ${{ secrets.APOLLO_KEY }}
-      APOLLO_GRAPH_REF: ${{ secrets.APOLLO_GRAPH_REF}}
-      APOLLO_GRAPH_REF_STAGING: ${{secrets.APOLLO_GRAPH_REF_STAGING}}
-      APOLLO_VCS_COMMIT: ${{ github.event.pull_request.head.sha }}
-      SUBGRAPH: listings
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    strategy:
+      matrix:
+        node-version: [16.x]
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
-
-      - name: Install Rover
-        run: |
-          echo "$HOME/.rover/bin" >> $GITHUB_PATH
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: serverless deploy
+        uses: serverless/github-action@v3.1
+        with:
+          args: deploy
+        env:
+          # SERVERLESS_ACCESS_KEY: ${{ secrets.SERVERLESS_ACCESS_KEY }}
+          # or if using AWS credentials directly
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
