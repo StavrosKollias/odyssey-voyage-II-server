@@ -47,15 +47,16 @@ app.use(
       console.log(token);
       let userInfo = {};
       if (userId) {
+        console.log("hey");
         const { data } = await axios
-          .get(`http://127.0.0.1:4011/login/${userId}`)
+          .get(`http://109.149.34.174:4011/login/${userId}`)
           .catch((error) => {
             throw AuthenticationError();
           });
 
         userInfo = { userId: data.id, userRole: data.role };
       }
-      console.log("hey");
+
       // console.log({
       //   expressRequest: req,
       //   expressResponse: res,

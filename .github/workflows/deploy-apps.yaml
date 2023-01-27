@@ -26,12 +26,12 @@ jobs:
       # - name: deploy listings
       #   uses: serverless/github-action@v3.1
       #   with:
-      #     args: -c "cd ./subgraph-listings && serverless deploy"
+      #     args: -c "cd ./subgraph-listings && yarn && serverless deploy"
       #     entrypoint: /bin/sh
       # - name: deploy bookings
       #   uses: serverless/github-action@v3.1
       #   with:
-      #     args: -c "cd ./subgraph-bookings && serverless deploy"
+      #     args: -c "cd ./subgraph-bookings  && yarn && install serverless deploy"
       #     entrypoint: /bin/sh
       - name: deploy accounts
         uses: serverless/github-action@v3.1
@@ -41,10 +41,10 @@ jobs:
       # - name: deploy reviews
       #   uses: serverless/github-action@v3.1
       #   with:
-      #     args: -c "cd ./subgraph-reviews && serverless deploy"
+      #     args: -c "cd ./subgraph-reviews && yarn install &&  serverless deploy"
       #     entrypoint: /bin/sh
       # - name: deploy payments
       #   uses: serverless/github-action@v3.1
       #   with:
-      #     args: -c "cd ./subgraph-payments && serverless deploy"
+      #     args: -c "cd ./subgraph-payments && yarn install &&  serverless deploy"
       #     entrypoint: /bin/sh
