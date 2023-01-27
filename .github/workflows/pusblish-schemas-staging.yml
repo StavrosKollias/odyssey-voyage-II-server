@@ -36,7 +36,7 @@ jobs:
           rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-accounts/schema.graphql --name accounts
       - name: Publish Bookings subgraph to staging registry
         run: |
-          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings/schema.graphql --name bookigs
+          rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-bookings/schema.graphql --name bookings
       - name: Publish Reviews subgraph to staging registry
         run: |
           rover subgraph publish ${APOLLO_GRAPH_REF_STAGING} --schema ./subgraph-reviews/schema.graphql --name reviews

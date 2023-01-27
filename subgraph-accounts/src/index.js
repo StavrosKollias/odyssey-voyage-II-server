@@ -20,8 +20,11 @@ const server = new ApolloServer({
     resolvers,
   }),
 });
+
 server.startInBackgroundHandlingStartupErrorsByLoggingAndFailingAllRequests();
+
 const app = express();
+
 app.use(
   cors({
     origin: "*",
