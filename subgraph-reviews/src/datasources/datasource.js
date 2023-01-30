@@ -2,8 +2,8 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 import { v4 } from "uuid";
 import { format } from "date-fns";
 import Sequelize from "sequelize";
-import Booking from "../../../services/bookings/sequelize/models/booking.js";
-import Review from "../../../services/reviews/sequelize/models/review.js";
+import Booking from "./services/bookings/sequelize/models/booking.js";
+import Review from "./services/reviews/sequelize/models/review.js";
 
 export class BookingsAPI {
   constructor() {
