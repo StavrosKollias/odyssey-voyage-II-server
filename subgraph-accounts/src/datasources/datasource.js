@@ -3,7 +3,7 @@ import { RESTDataSource } from "@apollo/datasource-rest";
 export class AccountsAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "https://early-eagles-pull-109-149-34-174.loca.lt";
+    this.baseURL = "https://all-buttons-argue-109-149-34-174.loca.lt";
   }
 
   login(username) {
