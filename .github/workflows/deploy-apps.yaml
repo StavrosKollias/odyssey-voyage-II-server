@@ -23,28 +23,28 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-      # - name: deploy listings
-      #   uses: serverless/github-action@v3.1
-      #   with:
-      #     args: -c "cd ./subgraph-listings && yarn && serverless deploy"
-      #     entrypoint: /bin/sh
-      # - name: deploy bookings
-      #   uses: serverless/github-action@v3.1
-      #   with:
-      #     args: -c "cd ./subgraph-bookings  && yarn && install serverless deploy"
-      #     entrypoint: /bin/sh
+      - name: deploy listings
+        uses: serverless/github-action@v3.1
+        with:
+          args: -c "cd ./subgraph-listings && yarn && serverless deploy"
+          entrypoint: /bin/sh
+      - name: deploy bookings
+        uses: serverless/github-action@v3.1
+        with:
+          args: -c "cd ./subgraph-bookings  && yarn && install serverless deploy"
+          entrypoint: /bin/sh
       - name: deploy accounts
         uses: serverless/github-action@v3.1
         with:
           args: -c "cd ./subgraph-accounts && yarn install && serverless deploy"
           entrypoint: /bin/sh
-      # - name: deploy reviews
-      #   uses: serverless/github-action@v3.1
-      #   with:
-      #     args: -c "cd ./subgraph-reviews && yarn install &&  serverless deploy"
-      #     entrypoint: /bin/sh
-      # - name: deploy payments
-      #   uses: serverless/github-action@v3.1
-      #   with:
-      #     args: -c "cd ./subgraph-payments && yarn install &&  serverless deploy"
-      #     entrypoint: /bin/sh
+      - name: deploy reviews
+        uses: serverless/github-action@v3.1
+        with:
+          args: -c "cd ./subgraph-reviews && yarn install &&  serverless deploy"
+          entrypoint: /bin/sh
+      - name: deploy payments
+        uses: serverless/github-action@v3.1
+        with:
+          args: -c "cd ./subgraph-payments && yarn install &&  serverless deploy"
+          entrypoint: /bin/sh

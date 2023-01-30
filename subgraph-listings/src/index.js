@@ -47,7 +47,7 @@ app.use(
       let userInfo = {};
       if (userId) {
         const { data } = await axios
-          .get(`http://127.0.0.1:4011/login/${userId}`)
+          .get(`https://myhost.loca.lt/login/${userId}`)
           .catch((error) => {
             throw AuthenticationError();
           });
