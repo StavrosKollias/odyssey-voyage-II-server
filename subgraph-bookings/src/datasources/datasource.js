@@ -156,7 +156,7 @@ export class BookingsAPI {
 export class ListingsAPI extends RESTDataSource {
   constructor() {
     super();
-    this.baseURL = "https://myhost10.loca.lt";
+    this.baseURL = "https://3dff-2a00-23c7-d387-6201-a175-4612-47bd-c9";
   }
 
   getListingsForUser(userId) {
