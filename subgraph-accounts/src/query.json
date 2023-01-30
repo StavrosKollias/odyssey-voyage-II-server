@@ -4,7 +4,8 @@
   "path": "/",
   "headers": {
     "content-type": "application/json",
-    "authorization": "Bearer user-1"
+    "authorization": "Bearer user-2",
+    "Bypass-Tunnel-Reminder": ""
   },
   "requestContext": {},
   "rawQueryString": "",

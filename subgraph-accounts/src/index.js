@@ -50,11 +50,9 @@ app.use(
         console.log("hey");
         console.log(userId);
         const { data } = await axios
-          .get(
-            `https://all-buttons-argue-109-149-34-174.loca.lt/login/${userId}`
-          )
+          .get(`http://myhost.loca.lt/login/${userId}`)
           .catch((error) => {
-            console.log("Error: ", error);
+            console.log("Error: ", error.message);
             throw AuthenticationError();
           });
 
