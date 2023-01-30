@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type":"module",
+  "type": "module",
   "engines": {
     "npm": ">=6.0.0",
     "node": ">=14.0.0 <=18"
@@ -27,10 +27,10 @@
     "date-fns": "^2.29.3",
     "graphql": "^16.6.0",
     "graphql-tag": "^2.12.6",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "sqlite3": "^5.1.4"
   },
   "devDependencies": {
-    "nodemon": "^2.0.13",
-    "sqlite3": "^5.1.4"
+    "nodemon": "^2.0.13"
   }
 }
