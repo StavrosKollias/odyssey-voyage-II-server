@@ -50,7 +50,9 @@ app.use(
         console.log("hey");
         console.log(userId);
         const { data } = await axios
-          .get(`http://109.149.34.174:4011/login/${userId}`)
+          .get(
+            `https://early-eagles-pull-109-149-34-174.loca.lt/login/${userId}`
+          )
           .catch((error) => {
             console.log("Error: ", error);
             throw AuthenticationError();
